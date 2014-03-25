@@ -5,8 +5,7 @@ $form_vars = array(
 //	'action' => elgg_normalize_url('action/products/add'),
 );
 
-$form_view_vars = array(
-);
+$form_view_vars = ProductHandler::prepareFormVars();
 
 $content = elgg_view_form('products/edit', $form_vars, $form_view_vars);
 $title = elgg_echo('products:title:add');

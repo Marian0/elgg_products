@@ -1,22 +1,30 @@
 <?php
+
 /**
  * Elgg tiene:
- *		Eventos
- *		Hooks
- *		Acciones
+ * 		Eventos
+ * 		Hooks
+ * 		Acciones
  */
-
-define('PRODUCTS_PATH', dirname(__FILE__).'/');
-define('PRODUCTS_ACTION_PATH', PRODUCTS_PATH.'actions/products/');
+define('PRODUCTS_PATH', dirname(__FILE__) . '/');
+define('PRODUCTS_ACTION_PATH', PRODUCTS_PATH . 'actions/products/');
+define('PRODUCTS_SUBTYPE', 'product');
 
 elgg_register_event_handler('init', 'system', 'products_init');
 
 function products_init() {
 	//Registramos un page handler, todo lo que sea sitio/products/ será procesado por el callback products_page_handler
 	elgg_register_page_handler('products', 'products_page_handler');
-	
-	elgg_register_action('products/edit', PRODUCTS_ACTION_PATH.'edit_a.php', 'logged_in');
-	
+
+	//Registramos una accion con permisos de logged in
+	elgg_register_action('products/edit', PRODUCTS_ACTION_PATH . 'edit_a.php', 'logged_in');
+
+	// menus
+	elgg_register_menu_item('site', array(
+		'name' => 'products',
+		'text' => elgg_echo('products'),
+		'href' => 'products/all'
+	));
 }
 
 /**
@@ -39,18 +47,18 @@ function products_init() {
  */
 function products_page_handler($pages) {
 	$page = elgg_extract('0', $pages, 'all');
-	
-	$path = PRODUCTS_PATH.'pages/products/';
-	
+
+	$path = PRODUCTS_PATH . 'pages/products/';
+
 	switch ($page) {
 		case 'add':
 			include_once $path . 'add_p.php';
 			break;
 		default:
-			include_once($path.'all_p.php');
+			include_once($path . 'all_p.php');
 			break;
 	}
-	
-	
+
+
 	return TRUE;
 }

@@ -1,7 +1,18 @@
 <?php
 
-$content = 'Contenido 1';
-$title = 'Titulo 1';
+elgg_register_title_button();
+
+
+$title = elgg_echo('products:listing:title');
+
+$options = array(
+	'type' => 'object',
+	'subtype' => PRODUCTS_SUBTYPE,
+//	'limit' => 0,
+	'full_view' => FALSE,
+);
+$content = elgg_list_entities($options);
+
 
 $body = elgg_view_layout('content', array(
 	'filter' => '',
