@@ -40,6 +40,8 @@ try {
 	
 	system_message(elgg_echo('products:msg:save:success'));
 	
+	elgg_clear_sticky_form('products');
+	
 	forward($product->getURL());
 	
 } catch (Exception $exc) {

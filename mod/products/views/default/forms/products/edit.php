@@ -2,7 +2,8 @@
 
 
 $title = elgg_extract('title', $vars, '');
-$price = '';
+$price = elgg_extract('price', $vars, '');
+$guid = (int) elgg_extract('guid', $vars, '');
 
 ?>
 
@@ -17,7 +18,7 @@ $price = '';
 </div>
 
 <div class="elgg-foot">
-	<?php echo elgg_view('input/hidden', array('name' => 'guid', 'value' => 0)); ?>
+	<?php echo elgg_view('input/hidden', array('name' => 'guid', 'value' => $guid)); ?>
 	<?php echo elgg_view('input/submit', array('value' => elgg_echo("save"))); ?>
 </div>
 

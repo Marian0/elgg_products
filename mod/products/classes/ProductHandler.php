@@ -18,6 +18,7 @@ class ProductHandler {
 		);
 
 		if ($product) {
+			
 			foreach (array_keys($values) as $field) {
 				if (isset($product->$field)) {
 					$values[$field] = $product->$field;
